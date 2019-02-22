@@ -2,9 +2,9 @@
 ===============================================================================
 
   FILE:  lasreader_las.hpp
-  
+
   CONTENTS:
-  
+
     Reads LIDAR points from the LAS format
 
   PROGRAMMERS:
@@ -21,11 +21,11 @@
 
     This software is distributed WITHOUT ANY WARRANTY and without even the
     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  
+
   CHANGE HISTORY:
-  
-    10 July 2018 -- user must set seek-ability of istream (hard to determine) 
-    19 April 2017 -- support for selective decompression for new LAS 1.4 points 
+
+    10 July 2018 -- user must set seek-ability of istream (hard to determine)
+    19 April 2017 -- support for selective decompression for new LAS 1.4 points
     1 February 2017 -- better support for OGC WKT strings in VLRs or EVLRs
     13 October 2014 -- changed default IO buffer size with setvbuf() to 262144
     27 August 2014 -- peek bounding box to open many file with lasreadermerged
@@ -33,9 +33,9 @@
      5 November 2011 -- changed default IO buffer size with setvbuf() to 65536
     21 January 2011 -- adapted from lasreader to create abstract reader class
      3 December 2010 -- updated to (somewhat) support LAS format 1.3
-     7 September 2008 -- updated to support LAS format 1.2 
+     7 September 2008 -- updated to support LAS format 1.2
     18 February 2007 -- created after repairing 2 vacuum cleaners in the garden
-  
+
 ===============================================================================
 */
 #ifndef LAS_READER_LAS_HPP
@@ -51,7 +51,6 @@
 #else
 #include <istream>
 #include <fstream>
-using namespace std;
 #endif
 
 class LASreadPoint;
@@ -64,7 +63,7 @@ public:
 
   BOOL open(const char* file_name, I32 io_buffer_size=LAS_TOOLS_IO_IBUFFER_SIZE, BOOL peek_only=FALSE, U32 decompress_selective=LASZIP_DECOMPRESS_SELECTIVE_ALL);
   BOOL open(FILE* file, BOOL peek_only=FALSE, U32 decompress_selective=LASZIP_DECOMPRESS_SELECTIVE_ALL);
-  BOOL open(istream& stream, BOOL peek_only=FALSE, U32 decompress_selective=LASZIP_DECOMPRESS_SELECTIVE_ALL, BOOL seekable=TRUE);
+  BOOL open(std::istream& stream, BOOL peek_only=FALSE, U32 decompress_selective=LASZIP_DECOMPRESS_SELECTIVE_ALL, BOOL seekable=TRUE);
   virtual BOOL open(ByteStreamIn* stream, BOOL peek_only=FALSE, U32 decompress_selective=LASZIP_DECOMPRESS_SELECTIVE_ALL);
 
   I32 get_format() const;
