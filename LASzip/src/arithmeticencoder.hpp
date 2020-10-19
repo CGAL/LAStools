@@ -51,7 +51,7 @@ public:
   ~ArithmeticEncoder();
 
 /* Manage encoding                                           */
-  BOOL init(ByteStreamOut* outstream);
+  las_BOOL init(ByteStreamOut* outstream);
   void done();
 
 /* Manage an entropy model for a single bit                  */

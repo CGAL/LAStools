@@ -2,11 +2,11 @@
 ===============================================================================
 
   FILE:  mydefs.hpp
-  
+
   CONTENTS:
 
     Basic data type definitions and operations to be robust across platforms.
- 
+
   PROGRAMMERS:
 
     martin.isenburg@rapidlasso.com  -  http://rapidlasso.com
@@ -21,13 +21,13 @@
 
     This software is distributed WITHOUT ANY WARRANTY and without even the
     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  
+
   CHANGE HISTORY:
-  
+
     28 October 2015 -- adding DLL bindings via 'COMPILE_AS_DLL' and 'USE_AS_DLL'
     10 January 2011 -- licensing change for LGPL release and libLAS integration
     13 July 2005 -- created after returning with many mosquito bites from OBX
-  
+
 ===============================================================================
 */
 #ifndef MYDEFS_HPP
@@ -55,10 +55,10 @@ typedef unsigned int       U32;
 typedef unsigned short     U16;
 typedef unsigned char      U8;
 
-#if defined(_WIN32) && ! defined (__MINGW32__) // 64 byte integer under Windows 
+#if defined(_WIN32) && ! defined (__MINGW32__) // 64 byte integer under Windows
 typedef unsigned __int64   U64;
 typedef __int64            I64;
-#else                                          // 64 byte integer elsewhere ... 
+#else                                          // 64 byte integer elsewhere ...
 typedef unsigned long long U64;
 typedef long long          I64;
 #endif
@@ -67,9 +67,9 @@ typedef float              F32;
 typedef double             F64;
 
 #if defined(_MSC_VER) || defined (__MINGW32__)
-typedef int                BOOL;
+typedef int                las_BOOL;
 #else
-typedef bool               BOOL;
+typedef bool               las_BOOL;
 #endif
 
 typedef union U32I32F32 { U32 u32; I32 i32; F32 f32; } U32I32F32;
@@ -94,9 +94,9 @@ typedef union U64I64F64 { U64 u64; I64 i64; F64 f64; } U64I64F64;
 #define U32_MIN            ((U32)0x0)            // 0
 #define U32_MAX            ((U32)0xFFFFFFFF)     // 4294967295
 #define U32_MAX_MINUS_ONE  ((U32)0xFFFFFFFE)     // 4294967294
-#if defined(WIN32)            // 64 byte unsigned int constant under Windows 
+#if defined(WIN32)            // 64 byte unsigned int constant under Windows
 #define U32_MAX_PLUS_ONE   0x0000000100000000    // 4294967296
-#else                         // 64 byte unsigned int constant elsewhere ... 
+#else                         // 64 byte unsigned int constant elsewhere ...
 #define U32_MAX_PLUS_ONE   0x0000000100000000ull // 4294967296
 #endif
 
@@ -168,21 +168,21 @@ typedef union U64I64F64 { U64 u64; I64 i64; F64 f64; } U64I64F64;
 #define NULL    0
 #endif
 
-inline BOOL IS_LITTLE_ENDIAN()
+inline las_BOOL IS_LITTLE_ENDIAN()
 {
   const U32 i = 1;
   return (*((U8*)&i) == 1);
 }
 
 #define ENDIANSWAP16(n) \
-	( ((((U16) n) << 8) & 0xFF00) | \
-	  ((((U16) n) >> 8) & 0x00FF) )
+  ( ((((U16) n) << 8) & 0xFF00) | \
+    ((((U16) n) >> 8) & 0x00FF) )
 
 #define ENDIANSWAP32(n) \
-	( ((((U32) n) << 24) & 0xFF000000) |	\
-	  ((((U32) n) <<  8) & 0x00FF0000) |	\
-	  ((((U32) n) >>  8) & 0x0000FF00) |	\
-	  ((((U32) n) >> 24) & 0x000000FF) )
+  ( ((((U32) n) << 24) & 0xFF000000) |	\
+    ((((U32) n) <<  8) & 0x00FF0000) |	\
+    ((((U32) n) >>  8) & 0x0000FF00) |	\
+    ((((U32) n) >> 24) & 0x000000FF) )
 
 inline void ENDIAN_SWAP_16(U8* field)
 {

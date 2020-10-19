@@ -59,30 +59,30 @@ class LASLIB_DLL LASwriterLAS : public LASwriter
 {
 public:
 
-  BOOL refile(FILE* file);
+  las_BOOL refile(FILE* file);
 
-  BOOL open(const LASheader* header, U32 compressor=LASZIP_COMPRESSOR_NONE, I32 requested_version=0, I32 chunk_size=50000);
-  BOOL open(const char* file_name, const LASheader* header, U32 compressor=LASZIP_COMPRESSOR_NONE, I32 requested_version=0, I32 chunk_size=50000, I32 io_buffer_size=LAS_TOOLS_IO_OBUFFER_SIZE);
-  BOOL open(FILE* file, const LASheader* header, U32 compressor=LASZIP_COMPRESSOR_NONE, I32 requested_version=0, I32 chunk_size=50000);
-  BOOL open(std::ostream& ostream, const LASheader* header, U32 compressor=LASZIP_COMPRESSOR_NONE, I32 requested_version=0, I32 chunk_size=50000);
+  las_BOOL open(const LASheader* header, U32 compressor=LASZIP_COMPRESSOR_NONE, I32 requested_version=0, I32 chunk_size=50000);
+  las_BOOL open(const char* file_name, const LASheader* header, U32 compressor=LASZIP_COMPRESSOR_NONE, I32 requested_version=0, I32 chunk_size=50000, I32 io_buffer_size=LAS_TOOLS_IO_OBUFFER_SIZE);
+  las_BOOL open(FILE* file, const LASheader* header, U32 compressor=LASZIP_COMPRESSOR_NONE, I32 requested_version=0, I32 chunk_size=50000);
+  las_BOOL open(std::ostream& ostream, const LASheader* header, U32 compressor=LASZIP_COMPRESSOR_NONE, I32 requested_version=0, I32 chunk_size=50000);
 
-  BOOL write_point(const LASpoint* point);
-  BOOL chunk();
+  las_BOOL write_point(const LASpoint* point);
+  las_BOOL chunk();
 
-  BOOL update_header(const LASheader* header, BOOL use_inventory=FALSE, BOOL update_extra_bytes=FALSE);
-  I64 close(BOOL update_npoints=TRUE);
+  las_BOOL update_header(const LASheader* header, las_BOOL use_inventory=FALSE, las_BOOL update_extra_bytes=FALSE);
+  I64 close(las_BOOL update_npoints=TRUE);
 
   LASwriterLAS();
   ~LASwriterLAS();
 
 private:
-  BOOL open(ByteStreamOut* stream, const LASheader* header, U32 compressor, I32 requested_version, I32 chunk_size);
+  las_BOOL open(ByteStreamOut* stream, const LASheader* header, U32 compressor, I32 requested_version, I32 chunk_size);
   ByteStreamOut* stream;
   LASwritePoint* writer;
   FILE* file;
   I64 header_start_position;
-  BOOL writing_las_1_4;
-  BOOL writing_new_point_type;
+  las_BOOL writing_las_1_4;
+  las_BOOL writing_new_point_type;
   // for delayed write of EVLRs
   I64 start_of_first_extended_variable_length_record;
   U32 number_of_extended_variable_length_records;

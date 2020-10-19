@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
 
     // open the reader
 
-    laszip_BOOL is_compressed = 0;
+    laszip_las_BOOL is_compressed = 0;
     if (laszip_open_reader(laszip_reader, file_name_in, &is_compressed))
     {
       fprintf(stderr,"DLL ERROR: opening laszip reader for '%s'\n", file_name_in);
@@ -243,7 +243,7 @@ int main(int argc, char *argv[])
 
     // open the writer
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     if (laszip_open_writer(laszip_writer, file_name_out, compress))
     {
@@ -339,7 +339,7 @@ int main(int argc, char *argv[])
 
     // open the reader
 
-    laszip_BOOL is_compressed = 0;
+    laszip_las_BOOL is_compressed = 0;
     if (laszip_open_reader(laszip_reader, file_name_in, &is_compressed))
     {
       fprintf(stderr,"DLL ERROR: opening laszip reader for '%s'\n", file_name_in);
@@ -468,7 +468,7 @@ int main(int argc, char *argv[])
 
     // open the writer
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     if (laszip_open_writer(laszip_writer, file_name_out, compress))
     {
@@ -707,7 +707,7 @@ int main(int argc, char *argv[])
 
     // open the writer
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     if (laszip_open_writer(laszip_writer, file_name_out, compress))
     {
@@ -917,7 +917,7 @@ int main(int argc, char *argv[])
 
     // signal that spatial queries are coming
 
-    laszip_BOOL exploit = 1;
+    laszip_las_BOOL exploit = 1;
     if (laszip_exploit_spatial_index(laszip_reader, exploit))
     {
       fprintf(stderr,"DLL ERROR: signaling laszip reader that spatial queries are coming for '%s'\n", file_name_in);
@@ -926,7 +926,7 @@ int main(int argc, char *argv[])
 
     // open the reader
 
-    laszip_BOOL is_compressed = 0;
+    laszip_las_BOOL is_compressed = 0;
     if (laszip_open_reader(laszip_reader, file_name_in, &is_compressed))
     {
       fprintf(stderr,"DLL ERROR: opening laszip reader for '%s'\n", file_name_in);
@@ -937,8 +937,8 @@ int main(int argc, char *argv[])
 
     // check whether spatial indexing information is available
 
-    laszip_BOOL is_indexed = 0;
-    laszip_BOOL is_appended = 0;
+    laszip_las_BOOL is_indexed = 0;
+    laszip_las_BOOL is_appended = 0;
     if (laszip_has_spatial_index(laszip_reader, &is_indexed, &is_appended))
     {
       fprintf(stderr,"DLL ERROR: checking laszip reader whether spatial indexing information is present for '%s'\n", file_name_in);
@@ -983,7 +983,7 @@ int main(int argc, char *argv[])
 
     // request the reader to only read this specified rectangular subset of points
 
-    laszip_BOOL is_empty = 0;
+    laszip_las_BOOL is_empty = 0;
     if (laszip_inside_rectangle(laszip_reader, sub_min_x, sub_min_y, sub_max_x, sub_max_y, &is_empty))
     {
       fprintf(stderr,"DLL ERROR: requesting points inside of rectangle [%g,%g] (%g,%g) from laszip reader\n", sub_min_x, sub_min_y, sub_max_x, sub_max_y);
@@ -1019,7 +1019,7 @@ int main(int argc, char *argv[])
 
     // open the writer
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     if (laszip_open_writer(laszip_writer, file_name_out, compress))
     {
@@ -1031,7 +1031,7 @@ int main(int argc, char *argv[])
 
     // read the points
 
-    laszip_BOOL is_done = 0;
+    laszip_las_BOOL is_done = 0;
     laszip_I64 p_count = 0;
 
     while (p_count < npoints)
@@ -1131,7 +1131,7 @@ int main(int argc, char *argv[])
 
     // open the reader
 
-    laszip_BOOL is_compressed = 0;
+    laszip_las_BOOL is_compressed = 0;
     if (laszip_open_reader(laszip_reader, file_name_in, &is_compressed))
     {
       fprintf(stderr,"DLL ERROR: opening laszip reader for '%s'\n", file_name_in);
@@ -1187,8 +1187,8 @@ int main(int argc, char *argv[])
 
     // enable the creation of spatial indices
 
-    laszip_BOOL create = 1;
-    laszip_BOOL append = 0; /* not supported yet */
+    laszip_las_BOOL create = 1;
+    laszip_las_BOOL append = 0; /* not supported yet */
 
     if (laszip_create_spatial_index(laszip_writer, create, append))
     {
@@ -1198,7 +1198,7 @@ int main(int argc, char *argv[])
 
     // open the writer
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     if (laszip_open_writer(laszip_writer, file_name_out, compress))
     {
@@ -1364,7 +1364,7 @@ int main(int argc, char *argv[])
 
     // open the writer
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     // this should fail if compress is true
 
@@ -1665,7 +1665,7 @@ int main(int argc, char *argv[])
 
     // enable the compatibility mode
 
-    laszip_BOOL request = 1;
+    laszip_las_BOOL request = 1;
     if (laszip_request_compatibility_mode(laszip_writer, request))
     {
       fprintf(stderr,"DLL ERROR: enabling laszip LAS 1.4 compatibility mode\n");
@@ -1674,7 +1674,7 @@ int main(int argc, char *argv[])
 
     // open the writer
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     if (laszip_open_writer(laszip_writer, file_name_out, compress))
     {
@@ -1904,7 +1904,7 @@ int main(int argc, char *argv[])
 
     // request compatibility mode for the reader
 
-    laszip_BOOL request_reader = 1;
+    laszip_las_BOOL request_reader = 1;
     if (laszip_request_compatibility_mode(laszip_reader, request_reader))
     {
       fprintf(stderr,"DLL ERROR: enabling laszip LAS 1.4 compatibility mode for the reader\n");
@@ -1913,7 +1913,7 @@ int main(int argc, char *argv[])
 
     // open the reader
 
-    laszip_BOOL is_compressed = 0;
+    laszip_las_BOOL is_compressed = 0;
     if (laszip_open_reader(laszip_reader, file_name_in, &is_compressed))
     {
       fprintf(stderr,"DLL ERROR: opening laszip reader for '%s'\n", file_name_in);
@@ -1961,13 +1961,13 @@ int main(int argc, char *argv[])
 
     // check if the output is compressed
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     // *only* enable the compatibility mode for the writer for compressed output
 
     if (compress)
     {
-      laszip_BOOL request_writer = 1;
+      laszip_las_BOOL request_writer = 1;
       if (laszip_request_compatibility_mode(laszip_writer, request_writer))
       {
         fprintf(stderr,"DLL ERROR: enabling laszip LAS 1.4 compatibility mode for the writer\n");
@@ -2167,7 +2167,7 @@ int main(int argc, char *argv[])
 
     // enable the compatibility mode
 
-    laszip_BOOL request = 1;
+    laszip_las_BOOL request = 1;
     if (laszip_request_compatibility_mode(laszip_writer, request))
     {
       fprintf(stderr,"DLL ERROR: enabling laszip LAS 1.4 compatibility mode\n");
@@ -2176,7 +2176,7 @@ int main(int argc, char *argv[])
 
     // open the writer
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     if (laszip_open_writer(laszip_writer, file_name_out, compress))
     {
@@ -2435,7 +2435,7 @@ int main(int argc, char *argv[])
 
     // enable the compatibility mode for the reader
 
-    laszip_BOOL request_reader = 1;
+    laszip_las_BOOL request_reader = 1;
     if (laszip_request_compatibility_mode(laszip_reader, request_reader))
     {
       fprintf(stderr,"DLL ERROR: enabling laszip LAS 1.4 compatibility mode for the reader\n");
@@ -2444,7 +2444,7 @@ int main(int argc, char *argv[])
 
     // open the reader
 
-    laszip_BOOL is_compressed = 0;
+    laszip_las_BOOL is_compressed = 0;
     if (laszip_open_reader(laszip_reader, file_name_in, &is_compressed))
     {
       fprintf(stderr,"DLL ERROR: opening laszip reader for '%s'\n", file_name_in);
@@ -2500,13 +2500,13 @@ int main(int argc, char *argv[])
 
     // check if the output is compressed
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     // *only* enable the compatibility mode for the writer for compressed output
 
     if (compress)
     {
-      laszip_BOOL request_writer = 1;
+      laszip_las_BOOL request_writer = 1;
       if (laszip_request_compatibility_mode(laszip_writer, request_writer))
       {
         fprintf(stderr,"DLL ERROR: enabling laszip LAS 1.4 compatibility mode for the writer\n");
@@ -2847,13 +2847,13 @@ int main(int argc, char *argv[])
 
     // compressed output or not?
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     // if compressed output was requested enable the compatibility mode
 
     if (compress)
     {
-      laszip_BOOL request = 1;
+      laszip_las_BOOL request = 1;
       if (laszip_request_compatibility_mode(laszip_writer, request))
       {
         fprintf(stderr,"DLL ERROR: enabling laszip LAS 1.4 compatibility mode\n");
@@ -3135,7 +3135,7 @@ int main(int argc, char *argv[])
 
     // enable the compatibility mode for the reader
 
-    laszip_BOOL request_reader = 1;
+    laszip_las_BOOL request_reader = 1;
     if (laszip_request_compatibility_mode(laszip_reader, request_reader))
     {
       fprintf(stderr,"DLL ERROR: enabling laszip LAS 1.4 compatibility mode for the reader\n");
@@ -3144,7 +3144,7 @@ int main(int argc, char *argv[])
 
     // open the reader
 
-    laszip_BOOL is_compressed = 0;
+    laszip_las_BOOL is_compressed = 0;
     if (laszip_open_reader(laszip_reader, file_name_in, &is_compressed))
     {
       fprintf(stderr,"DLL ERROR: opening laszip reader for '%s'\n", file_name_in);
@@ -3192,13 +3192,13 @@ int main(int argc, char *argv[])
 
     // check if the output is compressed
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     // *only* enable the compatibility mode for the writer for compressed output
 
     if (compress)
     {
-      laszip_BOOL request_writer = 1;
+      laszip_las_BOOL request_writer = 1;
       if (laszip_request_compatibility_mode(laszip_writer, request_writer))
       {
         fprintf(stderr,"DLL ERROR: enabling laszip LAS 1.4 compatibility mode for the writer\n");
@@ -3318,7 +3318,7 @@ int main(int argc, char *argv[])
 
     // request compatibility mode for the reader
 
-    laszip_BOOL request_compatibility = 1;
+    laszip_las_BOOL request_compatibility = 1;
     if (laszip_request_compatibility_mode(laszip_reader, request_compatibility))
     {
       fprintf(stderr,"DLL ERROR: requesting LAS 1.4 compatibility mode for the reader\n");
@@ -3327,7 +3327,7 @@ int main(int argc, char *argv[])
 
     // open the reader
 
-    laszip_BOOL is_compressed = 0;
+    laszip_las_BOOL is_compressed = 0;
     if (laszip_open_reader(laszip_reader, file_name_in, &is_compressed))
     {
       fprintf(stderr,"DLL ERROR: opening laszip reader for '%s'\n", file_name_in);
@@ -3375,7 +3375,7 @@ int main(int argc, char *argv[])
 
     // request native extension for the writer
 
-    laszip_BOOL request_native = 1;
+    laszip_las_BOOL request_native = 1;
     if (laszip_request_native_extension(laszip_writer, request_native))
     {
       fprintf(stderr,"DLL ERROR: requesting native LAS 1.4 extension for the writer\n");
@@ -3392,7 +3392,7 @@ int main(int argc, char *argv[])
 
     // check if the output is compressed
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     // open the writer
 
@@ -3490,7 +3490,7 @@ int main(int argc, char *argv[])
 
     // request compatibility mode for the reader
 
-    laszip_BOOL request_compatibility = 1;
+    laszip_las_BOOL request_compatibility = 1;
     if (laszip_request_compatibility_mode(laszip_reader, request_compatibility))
     {
       fprintf(stderr,"DLL ERROR: requesting LAS 1.4 compatibility mode for the reader\n");
@@ -3508,7 +3508,7 @@ int main(int argc, char *argv[])
 
     // open the reader
 
-    laszip_BOOL is_compressed = 0;
+    laszip_las_BOOL is_compressed = 0;
     if (laszip_open_reader(laszip_reader, file_name_in, &is_compressed))
     {
       fprintf(stderr,"DLL ERROR: opening laszip reader for '%s'\n", file_name_in);
@@ -3556,7 +3556,7 @@ int main(int argc, char *argv[])
 
     // request native extension for the writer
 
-    laszip_BOOL request_native = 1;
+    laszip_las_BOOL request_native = 1;
     if (laszip_request_native_extension(laszip_writer, request_native))
     {
       fprintf(stderr,"DLL ERROR: requesting native LAS 1.4 extension for the writer\n");
@@ -3573,7 +3573,7 @@ int main(int argc, char *argv[])
 
     // check if the output is compressed
 
-    laszip_BOOL compress = (strstr(file_name_out, ".laz") != 0);
+    laszip_las_BOOL compress = (strstr(file_name_out, ".laz") != 0);
 
     // open the writer
 

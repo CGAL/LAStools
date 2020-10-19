@@ -72,7 +72,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-ArithmeticModel::ArithmeticModel(U32 symbols, BOOL compress)
+ArithmeticModel::ArithmeticModel(U32 symbols, las_BOOL compress)
 {
   this->symbols = symbols;
   this->compress = compress;

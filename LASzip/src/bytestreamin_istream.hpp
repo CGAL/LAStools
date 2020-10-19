@@ -52,13 +52,13 @@ public:
 /* read an array of bytes                                    */
   void getBytes(U8* bytes, const U32 num_bytes);
 /* is the stream seekable (e.g. standard in is not)          */
-  BOOL isSeekable() const;
+  las_BOOL isSeekable() const;
 /* get current position of stream                            */
   I64 tell() const;
 /* seek to this position in the stream                       */
-  BOOL seek(const I64 position);
+  las_BOOL seek(const I64 position);
 /* seek to the end of the file                               */
-  BOOL seekEnd(const I64 distance=0);
+  las_BOOL seekEnd(const I64 distance=0);
 /* destructor                                                */
   ~ByteStreamInIstream(){};
 protected:
@@ -129,7 +129,7 @@ inline void ByteStreamInIstream::getBytes(U8* bytes, const U32 num_bytes)
   }
 }
 
-inline BOOL ByteStreamInIstream::isSeekable() const
+inline las_BOOL ByteStreamInIstream::isSeekable() const
 {
   return !!(static_cast<ifstream&>(stream));
 }
@@ -139,7 +139,7 @@ inline I64 ByteStreamInIstream::tell() const
   return (I64)stream.tellg();
 }
 
-inline BOOL ByteStreamInIstream::seek(const I64 position)
+inline las_BOOL ByteStreamInIstream::seek(const I64 position)
 {
   if (tell() != position)
   {
@@ -149,7 +149,7 @@ inline BOOL ByteStreamInIstream::seek(const I64 position)
   return TRUE;
 }
 
-inline BOOL ByteStreamInIstream::seekEnd(const I64 distance)
+inline las_BOOL ByteStreamInIstream::seekEnd(const I64 distance)
 {
   stream.seekg(static_cast<streamoff>(-distance), ios::end);
   return stream.good();

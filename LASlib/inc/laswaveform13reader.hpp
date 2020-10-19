@@ -59,16 +59,16 @@ public:
 
   U8* samples;
 
-  BOOL open(const char* file_name, I64 start_of_waveform_data_packet_record, const LASvlr_wave_packet_descr * const * wave_packet_descr);
-  BOOL is_compressed() const;
+  las_BOOL open(const char* file_name, I64 start_of_waveform_data_packet_record, const LASvlr_wave_packet_descr * const * wave_packet_descr);
+  las_BOOL is_compressed() const;
 
-  BOOL read_waveform(const LASpoint* point);
+  las_BOOL read_waveform(const LASpoint* point);
 
-  BOOL get_samples();
-  BOOL has_samples();
+  las_BOOL get_samples();
+  las_BOOL has_samples();
 
-  BOOL get_samples_xyz();
-  BOOL has_samples_xyz();
+  las_BOOL get_samples_xyz();
+  las_BOOL has_samples_xyz();
 
   void close();
 
@@ -76,7 +76,7 @@ public:
   ~LASwaveform13reader();
 
 private:
-  BOOL compressed;
+  las_BOOL compressed;
   U32 size;
   const LASvlr_wave_packet_descr * const * wave_packet_descr;
   FILE* file;

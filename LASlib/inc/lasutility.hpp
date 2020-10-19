@@ -38,7 +38,7 @@
 class LASLIB_DLL LASinventory
 {
 public:
-  BOOL active() const { return (first == FALSE); }; 
+  las_BOOL active() const { return (first == FALSE); }; 
   I64 extended_number_of_point_records;
   I64 extended_number_of_points_by_return[16];
   I32 max_X;
@@ -47,18 +47,18 @@ public:
   I32 min_Y;
   I32 max_Z;
   I32 min_Z;
-  BOOL init(const LASheader* header);
-  BOOL add(const LASpoint* point);
-  BOOL update_header(LASheader* header) const;
+  las_BOOL init(const LASheader* header);
+  las_BOOL add(const LASpoint* point);
+  las_BOOL update_header(LASheader* header) const;
   LASinventory();
 private:
-  BOOL first;
+  las_BOOL first;
 };
 
 class LASLIB_DLL LASsummary
 {
 public:
-  BOOL active() const { return (first == FALSE); }; 
+  las_BOOL active() const { return (first == FALSE); }; 
   I64 number_of_point_records;
   I64 number_of_points_by_return[16];
   I64 number_of_returns[16];
@@ -78,18 +78,18 @@ public:
   I64 xyz_fluff_100[3];
   I64 xyz_fluff_1000[3];
   I64 xyz_fluff_10000[3];
-  BOOL add(const LASpoint* point);
-  BOOL has_fluff() const { return has_fluff(0) || has_fluff(1) || has_fluff(2); };
-  BOOL has_fluff(U32 i) const { return (number_of_point_records && (number_of_point_records == xyz_fluff_10[i])); };
-  BOOL has_serious_fluff() const { return has_serious_fluff(0) || has_serious_fluff(1) || has_serious_fluff(2); };
-  BOOL has_serious_fluff(U32 i) const { return (number_of_point_records && (number_of_point_records == xyz_fluff_100[i])); };
-  BOOL has_very_serious_fluff() const { return has_very_serious_fluff(0) || has_very_serious_fluff(1) || has_very_serious_fluff(2); };
-  BOOL has_very_serious_fluff(U32 i) const { return (number_of_point_records && (number_of_point_records == xyz_fluff_1000[i])); };
-  BOOL has_extremely_serious_fluff() const { return has_extremely_serious_fluff(0) || has_extremely_serious_fluff(1) || has_extremely_serious_fluff(2); };
-  BOOL has_extremely_serious_fluff(U32 i) const { return (number_of_point_records && (number_of_point_records == xyz_fluff_10000[i])); };
+  las_BOOL add(const LASpoint* point);
+  las_BOOL has_fluff() const { return has_fluff(0) || has_fluff(1) || has_fluff(2); };
+  las_BOOL has_fluff(U32 i) const { return (number_of_point_records && (number_of_point_records == xyz_fluff_10[i])); };
+  las_BOOL has_serious_fluff() const { return has_serious_fluff(0) || has_serious_fluff(1) || has_serious_fluff(2); };
+  las_BOOL has_serious_fluff(U32 i) const { return (number_of_point_records && (number_of_point_records == xyz_fluff_100[i])); };
+  las_BOOL has_very_serious_fluff() const { return has_very_serious_fluff(0) || has_very_serious_fluff(1) || has_very_serious_fluff(2); };
+  las_BOOL has_very_serious_fluff(U32 i) const { return (number_of_point_records && (number_of_point_records == xyz_fluff_1000[i])); };
+  las_BOOL has_extremely_serious_fluff() const { return has_extremely_serious_fluff(0) || has_extremely_serious_fluff(1) || has_extremely_serious_fluff(2); };
+  las_BOOL has_extremely_serious_fluff(U32 i) const { return (number_of_point_records && (number_of_point_records == xyz_fluff_10000[i])); };
   LASsummary();
 private:
-  BOOL first;
+  las_BOOL first;
 };
 
 class LASbin
@@ -113,7 +113,7 @@ private:
   F32 clamp_min;
   F32 clamp_max;
   F32 one_over_step;
-  BOOL first;
+  las_BOOL first;
   I32 anker;
   I32 size_pos;
   I32 size_neg;
@@ -126,18 +126,18 @@ private:
 class LASLIB_DLL LAShistogram
 {
 public:
-  BOOL active() const { return is_active; }; 
-  BOOL parse(int argc, char* argv[]);
+  las_BOOL active() const { return is_active; }; 
+  las_BOOL parse(int argc, char* argv[]);
   I32 unparse(CHAR* string) const;
-  BOOL histo(const CHAR* name, F32 step);
-  BOOL histo_avg(const CHAR* name, F32 step, const CHAR* name_avg);
+  las_BOOL histo(const CHAR* name, F32 step);
+  las_BOOL histo_avg(const CHAR* name, F32 step, const CHAR* name_avg);
   void add(const LASpoint* point);
   void report(FILE* file) const;
   void reset();
   LAShistogram();
   ~LAShistogram();
 private:
-  BOOL is_active;
+  las_BOOL is_active;
   // counter bins
   LASbin* x_bin;
   LASbin* y_bin;
@@ -180,23 +180,23 @@ class LASLIB_DLL LASoccupancyGrid
 {
 public:
   void reset();
-  BOOL add(const LASpoint* point);
-  BOOL add(I32 pos_x, I32 pos_y);
-  BOOL occupied(const LASpoint* point) const;
-  BOOL occupied(I32 pos_x, I32 pos_y) const;
-  BOOL active() const;
+  las_BOOL add(const LASpoint* point);
+  las_BOOL add(I32 pos_x, I32 pos_y);
+  las_BOOL occupied(const LASpoint* point) const;
+  las_BOOL occupied(I32 pos_x, I32 pos_y) const;
+  las_BOOL active() const;
   U32 get_num_occupied() const { return num_occupied; };
-  BOOL write_asc_grid(const CHAR* file_name) const;
+  las_BOOL write_asc_grid(const CHAR* file_name) const;
 
   // read from file or write to file
-//  BOOL read(ByteStreamIn* stream);
-//  BOOL write(ByteStreamOut* stream) const;
+//  las_BOOL read(ByteStreamIn* stream);
+//  las_BOOL write(ByteStreamOut* stream) const;
 
   LASoccupancyGrid(F32 grid_spacing);
   ~LASoccupancyGrid();
   I32 min_x, min_y, max_x, max_y;
 private:
-  BOOL add_internal(I32 pos_x, I32 pos_y);
+  las_BOOL add_internal(I32 pos_x, I32 pos_y);
   F32 grid_spacing;
   I32 anker;
   I32* minus_ankers;

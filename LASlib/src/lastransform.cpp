@@ -1363,7 +1363,7 @@ void LAStransform::usage() const
   fprintf(stderr,"  -copy_B_into_NIR -copy_B_into_intensity\n");
 }
 
-BOOL LAStransform::parse(int argc, char* argv[])
+las_BOOL LAStransform::parse(int argc, char* argv[])
 {
   int i;
 
@@ -2289,7 +2289,7 @@ BOOL LAStransform::parse(int argc, char* argv[])
   return TRUE;
 }
 
-BOOL LAStransform::parse(CHAR* string)
+las_BOOL LAStransform::parse(CHAR* string)
 {
   int p = 0;
   int argc = 1;

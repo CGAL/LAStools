@@ -94,7 +94,7 @@ bool LASunzipper::read(unsigned char * const * point)
 
 bool LASunzipper::close()
 {
-  BOOL done = TRUE;
+  las_BOOL done = TRUE;
   if (reader)
   {
     done = reader->done();

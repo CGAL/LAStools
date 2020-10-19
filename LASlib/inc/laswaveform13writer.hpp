@@ -42,9 +42,9 @@ class IntegerCompressor;
 class LASwaveform13writer
 {
 public:
-  BOOL open(const char* file_name, const LASvlr_wave_packet_descr * const * wave_packet_descr);
+  las_BOOL open(const char* file_name, const LASvlr_wave_packet_descr * const * wave_packet_descr);
 
-  BOOL write_waveform(LASpoint* point, U8* samples);
+  las_BOOL write_waveform(LASpoint* point, U8* samples);
 
   void close();
 

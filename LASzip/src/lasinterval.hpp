@@ -56,7 +56,7 @@ public:
   LASintervalCell* last;
   LASintervalStartCell();
   LASintervalStartCell(const U32 p_index);
-  BOOL add(const U32 p_index, const U32 threshold=1000);
+  las_BOOL add(const U32 p_index, const U32 threshold=1000);
 };
 
 class LASinterval
@@ -66,7 +66,7 @@ public:
   ~LASinterval();
 
   // add points and create cells with intervals
-  BOOL add(const U32 p_index, const I32 c_index);
+  las_BOOL add(const U32 p_index, const I32 c_index);
 
   // get total number of cells
   U32 get_number_cells() const;
@@ -75,31 +75,31 @@ public:
   U32 get_number_intervals() const;
 
   // merge cells (and their intervals) into one cell
-  BOOL merge_cells(const U32 num_indices, const I32* indices, const I32 new_index);
+  las_BOOL merge_cells(const U32 num_indices, const I32* indices, const I32 new_index);
 
   // merge adjacent intervals with small gaps in cells to reduce total interval number to maximum
-  void merge_intervals(U32 maximum, const BOOL verbose=TRUE);
+  void merge_intervals(U32 maximum, const las_BOOL verbose=TRUE);
 
   // read from file or write to file
-  BOOL read(ByteStreamIn* stream);
-  BOOL write(ByteStreamOut* stream) const;
+  las_BOOL read(ByteStreamIn* stream);
+  las_BOOL write(ByteStreamOut* stream) const;
 
   // get one cell after the other
   void get_cells();
-  BOOL has_cells();
+  las_BOOL has_cells();
 
   // get a particular cell
-  BOOL get_cell(const I32 c_index);
+  las_BOOL get_cell(const I32 c_index);
 
   // add cell's intervals to those that will be merged 
-  BOOL add_current_cell_to_merge_cell_set();
-  BOOL add_cell_to_merge_cell_set(const I32 c_index, const BOOL erase=FALSE);
-  BOOL merge(const BOOL erase=FALSE);
+  las_BOOL add_current_cell_to_merge_cell_set();
+  las_BOOL add_cell_to_merge_cell_set(const I32 c_index, const las_BOOL erase=FALSE);
+  las_BOOL merge(const las_BOOL erase=FALSE);
   void clear_merge_cell_set();
-  BOOL get_merged_cell();
+  las_BOOL get_merged_cell();
 
   // iterate intervals of current cell (or over merged intervals)
-  BOOL has_intervals();
+  las_BOOL has_intervals();
 
   I32 index;
   U32 start;
@@ -116,7 +116,7 @@ private:
   LASintervalStartCell* last_cell;
   LASintervalCell* current_cell;
   LASintervalStartCell* merged_cells;
-  BOOL merged_cells_temporary;
+  las_BOOL merged_cells_temporary;
 };
 
 #endif

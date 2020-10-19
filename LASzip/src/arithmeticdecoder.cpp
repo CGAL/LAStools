@@ -79,7 +79,7 @@ ArithmeticDecoder::ArithmeticDecoder()
   instream = 0;
 }
 
-BOOL ArithmeticDecoder::init(ByteStreamIn* instream, BOOL really_init)
+las_BOOL ArithmeticDecoder::init(ByteStreamIn* instream, las_BOOL really_init)
 {
   if (instream == 0) return FALSE;
   this->instream = instream;

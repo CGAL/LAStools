@@ -39,20 +39,20 @@ class LASwriterWRL : public LASwriter
 {
 public:
 
-  BOOL open(const CHAR* file_name, const LASheader* header, const CHAR* parse_string=0);
-  BOOL open(FILE* file, const LASheader* header, const CHAR* parse_string=0);
+  las_BOOL open(const CHAR* file_name, const LASheader* header, const CHAR* parse_string=0);
+  las_BOOL open(FILE* file, const LASheader* header, const CHAR* parse_string=0);
 
-  BOOL write_point(const LASpoint* point);
-  BOOL chunk() { return FALSE; };
+  las_BOOL write_point(const LASpoint* point);
+  las_BOOL chunk() { return FALSE; };
 
-  BOOL update_header(const LASheader* header, BOOL use_inventory=FALSE, BOOL update_extra_bytes=FALSE);
-  I64 close(BOOL update_npoints=TRUE);
+  las_BOOL update_header(const LASheader* header, las_BOOL use_inventory=FALSE, las_BOOL update_extra_bytes=FALSE);
+  I64 close(las_BOOL update_npoints=TRUE);
 
   LASwriterWRL();
   ~LASwriterWRL();
 
 private:
-  BOOL close_file;
+  las_BOOL close_file;
   FILE* file;
   const LASheader* header;
   CHAR printstring[512];

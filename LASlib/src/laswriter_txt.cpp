@@ -33,18 +33,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-BOOL LASwriterTXT::refile(FILE* file)
+las_BOOL LASwriterTXT::refile(FILE* file)
 {
   this->file = file;
   return TRUE;
 }
 
-void LASwriterTXT::set_pts(BOOL pts)
+void LASwriterTXT::set_pts(las_BOOL pts)
 {
   this->opts = pts;
 }
 
-void LASwriterTXT::set_ptx(BOOL ptx)
+void LASwriterTXT::set_ptx(las_BOOL ptx)
 {
   this->optx = ptx;
 }
@@ -54,7 +54,7 @@ void LASwriterTXT::set_scale_rgb(F32 scale_rgb)
   this->scale_rgb = scale_rgb;
 }
 
-BOOL LASwriterTXT::open(const CHAR* file_name, const LASheader* header, const CHAR* parse_string, const CHAR* separator)
+las_BOOL LASwriterTXT::open(const CHAR* file_name, const LASheader* header, const CHAR* parse_string, const CHAR* separator)
 {
   if (file_name == 0)
   {
@@ -75,7 +75,7 @@ BOOL LASwriterTXT::open(const CHAR* file_name, const LASheader* header, const CH
   return open(file, header, parse_string, separator);
 }
 
-BOOL LASwriterTXT::open(FILE* file, const LASheader* header, const CHAR* parse_string, const CHAR* separator)
+las_BOOL LASwriterTXT::open(FILE* file, const LASheader* header, const CHAR* parse_string, const CHAR* separator)
 {
   if (file == 0)
   {
@@ -299,7 +299,7 @@ static void lidardouble2string(CHAR* string, double value, double precision)
     lidardouble2string(string, value);
 }
 
-BOOL LASwriterTXT::unparse_attribute(const LASpoint* point, I32 index)
+las_BOOL LASwriterTXT::unparse_attribute(const LASpoint* point, I32 index)
 {
   if (index >= header->number_attributes)
   {
@@ -425,7 +425,7 @@ BOOL LASwriterTXT::unparse_attribute(const LASpoint* point, I32 index)
   return TRUE;
 }
 
-BOOL LASwriterTXT::write_point(const LASpoint* point)
+las_BOOL LASwriterTXT::write_point(const LASpoint* point)
 {
   p_count++;
   int i = 0;
@@ -548,12 +548,12 @@ BOOL LASwriterTXT::write_point(const LASpoint* point)
   return TRUE;
 }
 
-BOOL LASwriterTXT::update_header(const LASheader* header, BOOL use_inventory, BOOL update_extra_bytes)
+las_BOOL LASwriterTXT::update_header(const LASheader* header, las_BOOL use_inventory, las_BOOL update_extra_bytes)
 {
   return TRUE;
 }
 
-I64 LASwriterTXT::close(BOOL update_header)
+I64 LASwriterTXT::close(las_BOOL update_header)
 {
   U32 bytes = (U32)ftell(file);
 
@@ -594,7 +594,7 @@ LASwriterTXT::~LASwriterTXT()
   if (file) close();
 }
 
-BOOL LASwriterTXT::check_parse_string(const CHAR* parse_string)
+las_BOOL LASwriterTXT::check_parse_string(const CHAR* parse_string)
 {
   const CHAR* p = parse_string;
   while (p[0])

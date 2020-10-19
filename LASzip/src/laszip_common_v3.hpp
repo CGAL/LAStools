@@ -40,7 +40,7 @@
 class LAScontextPOINT14
 {
 public:
-  BOOL unused;
+  las_BOOL unused;
 
   U8 last_item[128];
   U16 last_intensity[8];
@@ -83,7 +83,7 @@ public:
 class LAScontextRGB14
 {
 public:
-  BOOL unused;
+  las_BOOL unused;
 
   U16 last_item[3];
 
@@ -99,7 +99,7 @@ public:
 class LAScontextRGBNIR14
 {
 public:
-  BOOL unused;
+  las_BOOL unused;
 
   U16 last_item[4];
 
@@ -119,7 +119,7 @@ public:
 class LAScontextWAVEPACKET14
 {
 public:
-  BOOL unused;
+  las_BOOL unused;
 
   U8 last_item[29];
   I32 last_diff_32;
@@ -136,7 +136,7 @@ public:
 class LAScontextBYTE14
 {
 public:
-  BOOL unused;
+  las_BOOL unused;
 
   U8* last_item;
 

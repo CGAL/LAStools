@@ -39,37 +39,37 @@ class LASwriterTXT : public LASwriter
 {
 public:
 
-  void set_pts(BOOL pts);
-  void set_ptx(BOOL ptx);
+  void set_pts(las_BOOL pts);
+  void set_ptx(las_BOOL ptx);
   void set_scale_rgb(F32 scale_rgb);
 
-  BOOL refile(FILE* file);
+  las_BOOL refile(FILE* file);
 
-  BOOL open(const CHAR* file_name, const LASheader* header, const CHAR* parse_string=0, const CHAR* separator=0);
-  BOOL open(FILE* file, const LASheader* header, const CHAR* parse_string=0, const CHAR* separator=0);
+  las_BOOL open(const CHAR* file_name, const LASheader* header, const CHAR* parse_string=0, const CHAR* separator=0);
+  las_BOOL open(FILE* file, const LASheader* header, const CHAR* parse_string=0, const CHAR* separator=0);
 
-  BOOL write_point(const LASpoint* point);
-  BOOL chunk() { return FALSE; };
+  las_BOOL write_point(const LASpoint* point);
+  las_BOOL chunk() { return FALSE; };
 
-  BOOL update_header(const LASheader* header, BOOL use_inventory=FALSE, BOOL update_extra_bytes=FALSE);
-  I64 close(BOOL update_npoints=TRUE);
+  las_BOOL update_header(const LASheader* header, las_BOOL use_inventory=FALSE, las_BOOL update_extra_bytes=FALSE);
+  I64 close(las_BOOL update_npoints=TRUE);
 
   LASwriterTXT();
   ~LASwriterTXT();
 
 private:
-  BOOL close_file;
+  las_BOOL close_file;
   FILE* file;
   const LASheader* header;
   CHAR* parse_string;
-  BOOL opts;
-  BOOL optx;
+  las_BOOL opts;
+  las_BOOL optx;
   F32 scale_rgb;
   CHAR separator_sign;
   CHAR printstring[512];
   I32 attribute_starts[10];
-  BOOL check_parse_string(const CHAR* parse_string);
-  BOOL unparse_attribute(const LASpoint* point, I32 index);
+  las_BOOL check_parse_string(const CHAR* parse_string);
+  las_BOOL unparse_attribute(const LASpoint* point, I32 index);
 };
 
 #endif

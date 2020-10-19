@@ -69,7 +69,7 @@ LASwaveform13writer::~LASwaveform13writer()
 }
 
 
-BOOL LASwaveform13writer::open(const char* file_name, const LASvlr_wave_packet_descr * const * wave_packet_descr)
+las_BOOL LASwaveform13writer::open(const char* file_name, const LASvlr_wave_packet_descr * const * wave_packet_descr)
 {
   if (file_name == 0)
   {
@@ -86,7 +86,7 @@ BOOL LASwaveform13writer::open(const char* file_name, const LASvlr_wave_packet_d
   // copy relevant wave packet descriptions and check if compressed or not
 
   U16 i, number = 0;
-  BOOL compressed = FALSE;
+  las_BOOL compressed = FALSE;
 
   if (waveforms == 0)
   {
@@ -249,7 +249,7 @@ BOOL LASwaveform13writer::open(const char* file_name, const LASvlr_wave_packet_d
   return TRUE;
 }
 
-BOOL LASwaveform13writer::write_waveform(LASpoint* point, U8* samples)
+las_BOOL LASwaveform13writer::write_waveform(LASpoint* point, U8* samples)
 {
   U32 index = point->wavepacket.getIndex();
   if (index == 0)
