@@ -2,10 +2,10 @@
 ===============================================================================
 
   FILE:  lasvlr.hpp
-  
+
   CONTENTS:
-  
-    This class defines those VLRs and EVLRs that are defined either in the LAS 
+
+    This class defines those VLRs and EVLRs that are defined either in the LAS
     specification or are specific to and used by LAStools.
 
   PROGRAMMERS:
@@ -22,16 +22,17 @@
 
     This software is distributed WITHOUT ANY WARRANTY and without even the
     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  
+
   CHANGE HISTORY:
-  
+
     28 November 2019 -- created after Tobago paddle week in flight POS -> PTY
-  
+
 ===============================================================================
 */
 #ifndef LAS_VLR_HPP
 #define LAS_VLR_HPP
 
+#include <cstring>
 #include "mydefs.hpp"
 
 class LASvlr_lastiling
@@ -49,7 +50,7 @@ public:
 
   LASvlr_lastiling()
   {
-    memset((void*)this, 0, sizeof(LASvlr_lastiling));
+    std::memset((void*)this, 0, sizeof(LASvlr_lastiling));
   };
 };
 
@@ -68,7 +69,7 @@ public:
 
   LASvlr_lasoriginal()
   {
-    memset((void*)this, 0, sizeof(LASvlr_lasoriginal));
+    std::memset((void*)this, 0, sizeof(LASvlr_lasoriginal));
   };
 };
 

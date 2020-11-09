@@ -45,7 +45,7 @@
 #include "bytestreamout_file.hpp"
 
 #include <unordered_map>
-using namespace std
+using namespace std;
 typedef unordered_map<I32,U32> my_cell_hash;
 
 LASindex::LASindex()

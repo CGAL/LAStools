@@ -2,9 +2,9 @@
 ===============================================================================
 
   FILE:  bytestreamin_istream.hpp
-  
+
   CONTENTS:
-      
+
     Class for istream-based input streams with endian handling.
 
   PROGRAMMERS:
@@ -21,14 +21,14 @@
 
     This software is distributed WITHOUT ANY WARRANTY and without even the
     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  
+
   CHANGE HISTORY:
-  
+
     10 July 2018 -- because it's hard to determine seek-ability, user must set it
      1 October 2011 -- added 64 bit file support in MSVC 6.0 at McCafe at Hbf Linz
     10 January 2011 -- licensing change for LGPL release and liblas integration
     12 December 2010 -- created from ByteStreamOutFile after Howard got pushy (-;
-  
+
 ===============================================================================
 */
 #ifndef BYTE_STREAM_IN_ISTREAM_H
@@ -36,18 +36,13 @@
 
 #include "bytestreamin.hpp"
 
-#ifdef LZ_WIN32_VC6
-#include <fstream.h>
-#else
 #include <istream>
 #include <fstream>
-using namespace std;
-#endif
 
 class ByteStreamInIstream : public ByteStreamIn
 {
 public:
-  ByteStreamInIstream(istream& stream, BOOL seekable=TRUE);
+  ByteStreamInIstream(std::istream& stream, BOOL seekable=TRUE);
 /* read a single byte                                        */
   U32 getByte();
 /* read an array of bytes                                    */
@@ -63,14 +58,14 @@ public:
 /* destructor                                                */
   ~ByteStreamInIstream(){};
 protected:
-  istream& stream;
+  std::istream& stream;
   BOOL seekable;
 };
 
 class ByteStreamInIstreamLE : public ByteStreamInIstream
 {
 public:
-  ByteStreamInIstreamLE(istream& stream, BOOL seekable=TRUE);
+  ByteStreamInIstreamLE(std::istream& stream, BOOL seekable=TRUE);
 /* read 16 bit low-endian field                              */
   void get16bitsLE(U8* bytes);
 /* read 32 bit low-endian field                              */
@@ -90,7 +85,7 @@ private:
 class ByteStreamInIstreamBE : public ByteStreamInIstream
 {
 public:
-  ByteStreamInIstreamBE(istream& stream, BOOL seekable=TRUE);
+  ByteStreamInIstreamBE(std::istream& stream, BOOL seekable=TRUE);
 /* read 16 bit low-endian field                              */
   void get16bitsLE(U8* bytes);
 /* read 32 bit low-endian field                              */
@@ -107,7 +102,7 @@ private:
   U8 swapped[8];
 };
 
-inline ByteStreamInIstream::ByteStreamInIstream(istream& stream_param, BOOL seekable_param) : stream(stream_param), seekable(seekable_param)
+inline ByteStreamInIstream::ByteStreamInIstream(std::istream& stream_param, BOOL seekable_param) : stream(stream_param), seekable(seekable_param)
 {
 }
 
@@ -139,7 +134,7 @@ inline BOOL ByteStreamInIstream::seek(const I64 position)
 {
   if (tell() != position)
   {
-    stream.seekg(static_cast<streamoff>(position));
+    stream.seekg(static_cast<std::streamoff>(position));
     return stream.good();
   }
   return TRUE;
@@ -147,11 +142,11 @@ inline BOOL ByteStreamInIstream::seek(const I64 position)
 
 inline BOOL ByteStreamInIstream::seekEnd(const I64 distance)
 {
-  stream.seekg(static_cast<streamoff>(-distance), ios::end);
+  stream.seekg(static_cast<std::streamoff>(-distance), std::ios::end);
   return stream.good();
 }
 
-inline ByteStreamInIstreamLE::ByteStreamInIstreamLE(istream& stream, BOOL seekable) : ByteStreamInIstream(stream, seekable)
+inline ByteStreamInIstreamLE::ByteStreamInIstreamLE(std::istream& stream, BOOL seekable) : ByteStreamInIstream(stream, seekable)
 {
 }
 
@@ -199,7 +194,7 @@ inline void ByteStreamInIstreamLE::get64bitsBE(U8* bytes)
   bytes[7] = swapped[0];
 }
 
-inline ByteStreamInIstreamBE::ByteStreamInIstreamBE(istream& stream, BOOL seekable) : ByteStreamInIstream(stream, seekable)
+inline ByteStreamInIstreamBE::ByteStreamInIstreamBE(std::istream& stream, BOOL seekable) : ByteStreamInIstream(stream, seekable)
 {
 }
 

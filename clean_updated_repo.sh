@@ -1,7 +1,7 @@
 #!/bin/sh
 
-git rm -f -r ArcGIS_toolbox/
-git rm -f -r IMAGINE_toolbox/
+git rm -f -r bin/
+git rm -f -r LASlib/example/
 git rm -f -r LASlib/lib/
 git rm -f -r LASzip/dll/
 git rm -f -r QGIS_toolbox/

@@ -2,10 +2,10 @@
 ===============================================================================
 
   FILE:  laskdtree.hpp
-  
+
   CONTENTS:
-  
-    Tree structure for fast overlap checks of rectangles with list of rectangles 
+
+    Tree structure for fast overlap checks of rectangles with list of rectangles
 
   PROGRAMMERS:
 
@@ -21,11 +21,11 @@
 
     This software is distributed WITHOUT ANY WARRANTY and without even the
     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  
+
   CHANGE HISTORY:
-  
+
     26 October 2019 -- created at LoCoworking after three days of rain in Samara
-  
+
 ===============================================================================
 */
 #ifndef LAS_KD_TREE_HPP
@@ -38,9 +38,8 @@
 
 #include <list>
 #include <set>
-using namespace std;
 
-typedef set<U32> my_index_set;
+typedef std::set<U32> my_index_set;
 
 class LASkdtreeRectangle
 {
@@ -56,7 +55,7 @@ public:
   LASkdtreeRectangle(F64 min_x, F64 min_y, F64 max_x, F64 max_y, U32 index);
 };
 
-typedef list<LASkdtreeRectangle> my_rectangle_list;
+typedef std::list<LASkdtreeRectangle> my_rectangle_list;
 
 class LASkdtreeRectanglesNode
 {
