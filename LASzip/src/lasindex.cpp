@@ -44,33 +44,9 @@
 #include "bytestreamin_file.hpp"
 #include "bytestreamout_file.hpp"
 
-#ifdef UNORDERED
-   // Figure out whether <unordered_map> is in tr1
-#  ifdef __has_include
-#    if __has_include(<unordered_map>)
-#     include <unordered_map>
-      using namespace std;
-#     define UNORDERED_FOUND
-#    endif
-#  endif
-#  ifdef HAVE_UNORDERED_MAP
-#     include <unordered_map>
-      using namespace std;
-#  elif defined(UNORDERED_FOUND)
-#    include <tr1/unordered_map>
-    using namespace std;
-    using namespace tr1;
-#  endif
-typedef unordered_map<I32,U32> my_cell_hash;
-#elif defined(LZ_WIN32_VC6)
-#include <hash_map>
-using namespace std;
-typedef hash_map<I32,U32> my_cell_hash;
-#else
 #include <unordered_map>
-using namespace std;
-typedef unordered_map<I32, U32> my_cell_hash;
-#endif
+using namespace std
+typedef unordered_map<I32,U32> my_cell_hash;
 
 LASindex::LASindex()
 {
