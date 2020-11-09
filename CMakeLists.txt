@@ -1,21 +1,23 @@
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
-set(CMAKE_SUPPRESS_REGENERATION true)
-project("LAStools")
+project ( LAS )
 
-if (!MSVC)
-	add_compile_options(-O3 -Wall -Wno-strict-aliasing)
-else()
-	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-endif()
+cmake_minimum_required(VERSION 2.8.11)
 
-option(BUILD_SHARED_LIBS "Build LASlib as DLL" OFF)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if (BUILD_SHARED_LIBS AND UNIX AND NOT APPLE)
-	set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib/LASlib")
-endif()
+# definitions for VC++
+add_definitions( -DCOMPILE_AS_DLL  -D_CRT_SECURE_NO_WARNINGS )
 
-add_subdirectory(LASlib/src)
-add_subdirectory(src)
-if (EXISTS src_full)
-	add_subdirectory(src_full)
-endif()
+include_directories( BEFORE LASzip/src LASlib/inc  )
+
+file( GLOB LASLIB_SOURCES "${CMAKE_SOURCE_DIR}/LASlib/src/*.cpp")
+file( GLOB LASZIP_SOURCES "${CMAKE_SOURCE_DIR}/LASzip/src/*.cpp")
+
+add_library( las SHARED ${LASLIB_SOURCES} ${LASZIP_SOURCES} )
+
+install(TARGETS las
+         DESTINATION lib)
+install(DIRECTORY LASlib/inc/ DESTINATION include/LASlib
+        FILES_MATCHING PATTERN "*.hpp")
+install(DIRECTORY LASzip/src/ DESTINATION include/LASzip
+        FILES_MATCHING PATTERN "*.hpp")
