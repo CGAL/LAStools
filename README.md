@@ -79,6 +79,15 @@ This fork was updated from [the original
 repository](https://github.com/LAStools/LAStools) for the last
 time on the 9th November 2020.
 
+# Update procedure
+
+1. Hard reset on commit HEAD~1 (the latest commit removes unwanted
+files and may create many conflicts)
+2. Rebase on `LAStools/master`
+3. Run `clean_updated_repo.sh` (update script if new unwanted files
+   have been created)
+4. Commit an push
+
 
 --------------------
 
