@@ -1,9 +1,0 @@
-serf/blast
-serf/potree16
-*.exe
-*.las
-*.laz
-*~
-.vs
-*.pdb
-*.ilk
