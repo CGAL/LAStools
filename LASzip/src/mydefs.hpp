@@ -38,7 +38,7 @@
 #else  // _WIN32
 #ifdef COMPILE_AS_DLL
 #define LASLIB_DLL __declspec(dllexport)
-#elif USE_AS_DLL
+#elif defined(USE_AS_DLL)
 #define LASLIB_DLL __declspec(dllimport)
 #else
 #define LASLIB_DLL
