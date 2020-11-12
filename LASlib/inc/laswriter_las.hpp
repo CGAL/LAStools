@@ -55,7 +55,7 @@
 class ByteStreamOut;
 class LASwritePoint;
 
-class LASwriterLAS : public LASwriter
+class LASLIB_DLL LASwriterLAS : public LASwriter
 {
 public:
 

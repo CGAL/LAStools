@@ -55,7 +55,7 @@
 
 class LASreadPoint;
 
-class LASreaderLAS : public LASreader
+class LASLIB_DLL LASreaderLAS : public LASreader
 {
 public:
 
